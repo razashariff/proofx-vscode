@@ -1,0 +1,119 @@
+{
+  "name": "proofx",
+  "displayName": "ProofX - Cryptographic Content Protection",
+  "description": "Sign, verify, and protect any file with cryptographic proof of ownership. Tamper-proof timestamps, digital signatures, and verification URLs.",
+  "version": "1.0.0",
+  "publisher": "proofx",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.109.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "proofx",
+    "sign",
+    "verify",
+    "cryptographic",
+    "content protection",
+    "digital signature",
+    "timestamp",
+    "ownership",
+    "tamper-proof",
+    "ECDSA",
+    "SHA-256"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "proofx.signFile",
+        "title": "ProofX: Sign This File"
+      },
+      {
+        "command": "proofx.verifyFile",
+        "title": "ProofX: Verify This File"
+      },
+      {
+        "command": "proofx.signFolder",
+        "title": "ProofX: Sign All Files in Folder"
+      },
+      {
+        "command": "proofx.setApiKey",
+        "title": "ProofX: Set API Key"
+      },
+      {
+        "command": "proofx.setCreatorId",
+        "title": "ProofX: Set Creator ID"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "proofx.signFile",
+          "group": "proofx@1",
+          "when": "!explorerResourceIsFolder"
+        },
+        {
+          "command": "proofx.verifyFile",
+          "group": "proofx@2",
+          "when": "!explorerResourceIsFolder"
+        },
+        {
+          "command": "proofx.signFolder",
+          "group": "proofx@3",
+          "when": "explorerResourceIsFolder"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "proofx.signFile",
+          "group": "proofx@1"
+        },
+        {
+          "command": "proofx.verifyFile",
+          "group": "proofx@2"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "ProofX",
+      "properties": {
+        "proofx.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Your ProofX API key (get free at proofx.co.uk/developer)"
+        },
+        "proofx.creatorId": {
+          "type": "string",
+          "default": "",
+          "description": "Your ProofX Creator ID"
+        },
+        "proofx.autoSign": {
+          "type": "boolean",
+          "default": false,
+          "description": "Auto-sign files on save"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "package": "vsce package --allow-missing-repository",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.3",
+    "@types/vscode": "^1.109.0",
+    "@vscode/vsce": "^2.32.0",
+    "typescript": "^5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/razashariff/proofx-vscode"
+  },
+  "homepage": "https://proofx.co.uk",
+  "license": "MIT"
+}
