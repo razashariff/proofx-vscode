@@ -61,4 +61,4 @@ Sign, verify, and protect any file with cryptographic proof of ownership. Tamper
 
 ## License
 
-MIT
+BSL 1.1
